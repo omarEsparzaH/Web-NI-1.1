@@ -1,0 +1,29 @@
+#login{
+	top:51px;
+text-align: center;
+padding-top: 1%;
+background-color: rgba(63, 174, 41, 0.83);
+margin-left: auto;
+margin-right: auto;
+float: none;
+padding-bottom: 1%;
+box-shadow: 0px 1px 4px #000;
+border: medium none;
+}
+
+#fondo {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: transparent url("../imagenes/tecmilenio2.jpg") no-repeat fixed center center / cover;
+    position: fixed;
+    z-index: -2;
+    opacity: 0.5;
+    -webkit-filter: blur(3px); /* Safari */
+    filter: blur(3px);
+}
+}
+
+#logotipo{
+	padding-bottom: 5%;
+}

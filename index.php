@@ -1,8 +1,7 @@
-@@ -0,0 +1,43 @@
 <?php
  $incorrecto = isset($_GET['error']) ? $_GET['error'] : '';
  session_start();
- isset($_SESSION["usuario"]) ? header('Location: php/holaMundo.php') : '';
+ isset($_SESSION["usuario"]) ? header('Location: paginas/Mercadotecnia.php') : '';
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,4 +41,3 @@
  </div>
 </body>
 </html>
-\ No newline at end of file

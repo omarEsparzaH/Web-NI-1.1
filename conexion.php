@@ -1,38 +1,59 @@
 <?php
-$mysqli = '';
-define('DB_HOST','localhost');
-define('DB_USER','omar');
-define('DB_PASS','omar2016');
-$user = isset($_POST['usuario']) ? $_POST['usuario'] : '' ;
+require_once("bd.php");
+$user = isset($_POST['usuario']) ? $_POST['usuario'] : '';
 $password = isset($_POST['contrasena']) ? $_POST['contrasena'] : '';
-define('DB_DATABASE' , 'holamundo');
-$mysqli = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_DATABASE);
-$result = 'SELECT * FROM usuarios_login WHERE usuario = "' . $user.'"';
-$result2 = $mysqli->query($result);
 
-
-
+//el caso contrario de que el usuario o contraseña sean erroeneos , mysql devuelve un error
 if( $mysqli->connect_errno )
 {
-	header('Location:../index.php?error=true');
+	//redireccionamos a la pagina principan con un valor booleano que activa el mensaje de error en la pagina principal
+	//header('Location:../index.php?error=true');
 	echo 'Error en la conexión , usuario o contraseña incorrectos';
 	echo "<br/><a href = '../index.php'>regresar a login<a/>";
 	exit;	
 }else{
-	if($row = mysqli_fetch_array($result2))
-	{
-		if($row["password"] == $password)
-		{
-		  echo "funciona";
+	      
+	      $consulta = 'SELECT usuarios.id ,usuarios.usuario ,usuarios.password,rol.area_nombre FROM rol INNER JOIN usuarios WHERE usuarios.area = rol.id_rol AND usuario = "'.$user.'"';
+          $resultado = $mysqli->query($consulta);
+          $reg = mysqli_fetch_row($resultado);
+	      if( $reg[1] == $user)
+          {
+          	
+          	if( password_verify($password,"{$reg[2]}"))
+          	{
+          		echo 'la contraseña fue correcta';
+          		 //Si la conexion con la base de datos es exitosa se inicia sesion 
           session_start();
-	      $_SESSION["usuario"] = $user;
-	      header('Location:../php/holaMundo.php');
-		}
-	}else
-	{
-	    header('Location:../index.php?error=true');
-		
-	}
+	      $_SESSION["usuario"] = array($user,$reg[3]);
+	      //se redirecciona a la pagina que le corresponde , dependiendo de el area donde se encuentre
+	      switch ($reg[3]) {
+	      	case 'mercadotecnia':
+	      		header('Location:../paginas/Mercadotecnia.php');
+	      		break;
+	      	
+	      	case 'serviciosescolares':
+	      		header('Location:../php/holaMundo.php');
+	      		break;
+
+	      	case 'administrador':
+	      		header('Location:../paginas/Administrador.php');
+	      		break;
+	      }
+
+          	}else{
+          		$mysqli->close();
+          		//header('Location:../index.php?error=true');
+          		exit;
+          	}	       
+	          
+          }else{
+          	$mysqli->close();
+          	//header('Location:../index.php?error=true');
+          	exit;
+          }
+          
+	     
+	   		
 }
 
 ?>

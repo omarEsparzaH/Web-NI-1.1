@@ -1,0 +1,88 @@
+#fondo{
+display: block;
+height: 100%;
+width: 100%;
+background: transparent url("../imagenes/graduados_1.png") no-repeat fixed center center / cover;
+position: fixed;
+opacity: 0.2;
+z-index: -2;
+-webkit-filter: blur(3px); /* Safari */
+    filter: blur(3px);
+}
+
+.contenido-formulario{
+background: white;
+float: none;
+padding-bottom: 2%;
+-webkit-box-shadow: 2px 1px 3px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 2px 1px 3px 0px rgba(0,0,0,0.75);
+box-shadow: 2px 1px 3px 0px rgba(0,0,0,0.75);
+border: medium none;
+padding-left: 0px;
+top: 36px;
+}
+
+
+#logotipo{
+	margin-top: -4%;
+}
+
+.navbar-default
+{
+	border-color: none;
+}
+
+.navbar{
+	background-color: #3fae29;
+	border-radius: 0px;
+}
+
+.icono-formulario{
+float: left;
+background-repeat: no-repeat;
+background-position: center;
+background-color: #3fae29;
+top: 36px;
+position: absolute;
+left: 0;
+top: 0;
+bottom: 0;
+width: 80px;
+height: auto;
+background-image: url(../imagenes/archivo.png);
+}
+
+#registro{
+	/*padding-left: 10%;*/
+}
+
+.tamaño-input{
+	width: 90%;
+}
+
+#tamaño-boton{
+	width: 30%;
+}
+
+.dropdown-menu
+{
+	font-size: 12px;
+}
+
+#sesionUsuario{
+	float: right;
+color: white;
+width: 13%;
+}
+
+#imgUsuario{
+width: 29%;
+float: left;
+padding-top: 2%;
+}
+
+#nombreUsuario{
+	    padding-left: 33%;
+    padding-top: 2%;
+}
+}
